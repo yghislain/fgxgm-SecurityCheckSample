@@ -6,8 +6,11 @@ RUN apk update && \
     apk upgrade && \
     apk add --no-cache \
     curl \
-    zlib && \
+    openssl>=3.1.7 && \
     rm -rf /var/cache/apk/*
+
+# Verify OpenSSL version
+RUN openssl version
 
 # Verify versions
 RUN apk info zlib
