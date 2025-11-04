@@ -1,5 +1,5 @@
 # Switch to Alpine which may have the fix
-FROM node:18-alpine3.18
+FROM node:23.6.1
 
 # Alpine uses musl-libc with different zlib
 RUN apk update && \
