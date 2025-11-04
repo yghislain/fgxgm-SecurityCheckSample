@@ -1,7 +1,6 @@
-# Switch to Alpine which may have the fix
-FROM node:23.6.1
+FROM node:18-alpine3.19
 
-# Alpine uses musl-libc with different zlib
+# Update all packages including OpenSSL
 RUN apk update && \
     apk upgrade && \
     apk add --no-cache \
@@ -12,10 +11,7 @@ RUN apk update && \
 # Verify OpenSSL version
 RUN openssl version
 
-# Verify versions
-RUN apk info zlib
-
-# Rest of your Dockerfile...
+# Create non-root user
 RUN addgroup -g 1000 nodeuser && \
     adduser -D -u 1000 -G nodeuser nodeuser
 
